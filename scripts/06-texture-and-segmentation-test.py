@@ -19,8 +19,8 @@ for t in TEXTURES:
     textures.append(texUid)
 
 sim.place_cube([-4, 4])
-sim.place_cube([-4, 4])
-sim.place_cube([-4, 4])
+sim.place_cube([-3.5, 4])
+sim.place_cube([-3.7, 4])
 i = 0
 while True:
     sim.step()

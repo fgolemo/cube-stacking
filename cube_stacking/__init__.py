@@ -39,56 +39,6 @@ for randomness in [name for name, _ in RandomPositions.__members__.items()]:
 
         for drl in ["PPO", "TD3"]:
             register(
-                id=f'Cubestacc-TwoPlayer-Full-{randomness}-{drl}-{headlessness}-v0',
-                entry_point='cube_stacking.envs:TwoPlayerDirectoryFullArena',
-                kwargs={
-                    "headless": (True if headlessness == "Headless" else False),
-                    "arena": 4,
-                    "randomness": randomness,
-                    "drl": drl.lower(),
-                    "reward_scheme": 0
-                },
-                max_episode_steps=10,
-            )
-            register(
-                id=f'Cubestacc-TwoPlayer-Full-{randomness}-{drl}-{headlessness}-Eval-v0',
-                entry_point='cube_stacking.envs:TwoPlayerDirectoryFullArena',
-                kwargs={
-                    "headless": (True if headlessness == "Headless" else False),
-                    "arena": 4,
-                    "randomness": randomness,
-                    "eval": True,
-                    "drl": drl.lower(),
-                    "reward_scheme": 0
-                },
-                max_episode_steps=10,
-            )
-            register(
-                id=f'Cubestacc-TwoPlayer-Full-{randomness}-{drl}-{headlessness}-v1',
-                entry_point='cube_stacking.envs:TwoPlayerDirectoryFullArena',
-                kwargs={
-                    "headless": (True if headlessness == "Headless" else False),
-                    "arena": 4,
-                    "randomness": randomness,
-                    "drl": drl.lower(),
-                    "reward_scheme": 1
-                },
-                max_episode_steps=10,
-            )
-            register(
-                id=f'Cubestacc-TwoPlayer-Full-{randomness}-{drl}-{headlessness}-Eval-v1',
-                entry_point='cube_stacking.envs:TwoPlayerDirectoryFullArena',
-                kwargs={
-                    "headless": (True if headlessness == "Headless" else False),
-                    "arena": 4,
-                    "randomness": randomness,
-                    "eval": True,
-                    "drl": drl.lower(),
-                    "reward_scheme": 1
-                },
-                max_episode_steps=10,
-            )
-            register(
                 id=f'Cubestacc-TwoPlayer-Full-{randomness}-{drl}-{headlessness}-v2',
                 entry_point='cube_stacking.envs:TwoPlayerDirectoryFullArena',
                 kwargs={
