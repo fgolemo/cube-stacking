@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<robot name="puck" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="macros.xacro.xml"/>
+    <xacro:property name="mass" value=".1"/>
+    <xacro:property name="size" value=".1"/>
+
+    <link name="root">
+        <inertial>
+            <mass value="${mass}"/>
+            <xacro:box_inertia m="${mass}" x="${size}" y="${size}" z="${size}"/>
+        </inertial>
+    </link>
+
+    <joint name="root2lift" type="prismatic">
+        <parent link="root"/>
+        <child link="lift"/>
+        <origin xyz="0 0 0" rpi="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0" upper="${size*4}"/>
+    </joint>
+
+    <link name="lift"/>
+
+    <joint name="lift2right" type="prismatic">
+        <parent link="lift"/>
+        <child link="right"/>
+        <origin xyz="${size*2} 0 ${size/2}" rpi="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-${size*2}" upper="-${size/2}"/>
+    </joint>
+
+    <link name="right">
+        <xacro:box2 sizex="${size}" sizey="${size*3}" sizez="${size}" color="blue"/>
+        <inertial>
+            <mass value="${mass}"/>
+            <xacro:box_inertia m="${mass}" x="${size}" y="${size*3}" z="${size}"/>
+        </inertial>
+        <contact>
+            <lateral_friction value=".5"/>
+            <rolling_friction value="0.0"/>
+            <stiffness value="30000"/>
+            <damping value="1000"/>
+        </contact>
+    </link>
+
+    <joint name="root2left" type="prismatic">
+        <parent link="lift"/>
+        <child link="left"/>
+        <origin xyz="-${size*2} 0 ${size/2}" rpi="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="${size/2}" upper="${size*2}"/>
+    </joint>
+
+    <link name="left">
+        <xacro:box2 sizex="${size}" sizey="${size*3}" sizez="${size}" color="blue"/>
+        <inertial>
+            <mass value="${mass}"/>
+            <xacro:box_inertia m="${mass}" x="${size}" y="${size*3}" z="${size}"/>
+        </inertial>
+        <contact>
+            <lateral_friction value=".5"/>
+            <rolling_friction value="0.0"/>
+            <stiffness value="30000"/>
+            <damping value="1000"/>
+        </contact>
+    </link>
+</robot>
